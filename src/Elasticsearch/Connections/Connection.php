@@ -554,7 +554,7 @@ class Connection implements ConnectionInterface
     private function process4xxError($request, $response, $ignore)
     {
         $statusCode = $response['status'];
-        $responseBody = $response['body'];
+        $responseBody = $response['body'] ?? '';
 
         /** @var \Exception $exception */
         $exception = $this->tryDeserialize400Error($response);
