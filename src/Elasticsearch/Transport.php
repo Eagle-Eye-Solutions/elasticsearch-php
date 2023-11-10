@@ -83,7 +83,7 @@ class Transport
      * @throws Common\Exceptions\NoNodesAvailableException|\Exception
      * @return array
      */
-    public function performRequest($method, $uri, Transport $transport, $params = null, $body = null, $options = [])
+    public function performRequest($method, $uri, $params = null, $body = null, $options = [], Transport $transport)
     {
         try {
             $connection  = $this->getConnection();
