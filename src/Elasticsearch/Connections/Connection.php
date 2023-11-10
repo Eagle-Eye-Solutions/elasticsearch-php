@@ -677,6 +677,6 @@ class Connection implements ConnectionInterface
         }
 
         // <2.0 "i just blew up" nonstructured exception
-        return new $errorClass($error, $response['status']);
+        return new $errorClass($error ?? '', $response['status']);
     }
 }
