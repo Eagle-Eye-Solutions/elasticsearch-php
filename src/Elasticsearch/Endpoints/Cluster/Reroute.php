@@ -24,7 +24,7 @@ class Reroute extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -38,9 +38,7 @@ class Reroute extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cluster/reroute";
-
-        return $uri;
+        return "/_cluster/reroute";
     }
 
     /**

@@ -25,7 +25,7 @@ class Snapshots extends AbstractEndpoint
      */
     public function setRepository($repository)
     {
-        if (isset($repository) !== true) {
+        if (!isset($repository)) {
             return $this;
         }
 
@@ -39,15 +39,14 @@ class Snapshots extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->repository) !== true) {
+        if ($this->repository === null) {
             throw new Exceptions\RuntimeException(
                 'repository is required for Cat Snapshots '
             );
         }
         $repository = $this->repository;
-        $uri = "/_cat/snapshots/$repository/";
 
-        return $uri;
+        return "/_cat/snapshots/$repository/";
     }
 
     /**

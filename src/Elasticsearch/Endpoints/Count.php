@@ -23,7 +23,7 @@ class Count extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -41,11 +41,11 @@ class Count extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_count";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_count";
-        } elseif (isset($type) === true) {
+        } elseif (isset($type)) {
             $uri = "/_all/$type/_count";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_count";
         }
 

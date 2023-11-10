@@ -25,7 +25,7 @@ class Get extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -43,11 +43,11 @@ class Get extends AbstractEndpoint
         $name = $this->name;
         $uri = "/_settings";
 
-        if (isset($index) === true && isset($name) === true) {
+        if (isset($index) && isset($name)) {
             $uri = "/$index/_settings/$name";
-        } elseif (isset($name) === true) {
+        } elseif (isset($name)) {
             $uri = "/_settings/$name";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_settings";
         }
 

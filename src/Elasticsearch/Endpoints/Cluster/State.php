@@ -25,11 +25,11 @@ class State extends AbstractEndpoint
      */
     public function setMetric($metric)
     {
-        if (isset($metric) !== true) {
+        if (!isset($metric)) {
             return $this;
         }
 
-        if (is_array($metric) === true) {
+        if (is_array($metric)) {
             $metric = implode(",", $metric);
         }
 
@@ -47,9 +47,9 @@ class State extends AbstractEndpoint
         $metric = $this->metric;
         $uri = "/_cluster/state";
 
-        if (isset($metric) === true && isset($index) === true) {
+        if (isset($metric) && isset($index)) {
             $uri = "/_cluster/state/$metric/$index";
-        } elseif (isset($metric) === true) {
+        } elseif (isset($metric)) {
             $uri = "/_cluster/state/$metric";
         }
 

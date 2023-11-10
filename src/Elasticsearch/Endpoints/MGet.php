@@ -23,7 +23,7 @@ class MGet extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -41,11 +41,11 @@ class MGet extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_mget";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_mget";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_mget";
-        } elseif (isset($type) === true) {
+        } elseif (isset($type)) {
             $uri = "/_all/$type/_mget";
         }
 
@@ -75,7 +75,7 @@ class MGet extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for MGet');
         }
 

@@ -27,7 +27,7 @@ class Put extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -43,7 +43,7 @@ class Put extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -58,22 +58,21 @@ class Put extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->name) !== true) {
+        if ($this->name === null) {
             throw new Exceptions\RuntimeException(
                 'name is required for Put'
             );
         }
 
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Put'
             );
         }
         $index = $this->index;
         $name = $this->name;
-        $uri = "/$index/_alias/$name";
 
-        return $uri;
+        return "/$index/_alias/$name";
     }
 
     /**

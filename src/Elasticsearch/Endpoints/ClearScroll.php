@@ -25,7 +25,7 @@ class ClearScroll extends AbstractEndpoint
      */
     public function setScrollId($scroll_id)
     {
-        if (isset($scroll_id) !== true) {
+        if (!isset($scroll_id)) {
             return $this;
         }
 
@@ -40,7 +40,7 @@ class ClearScroll extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->scroll_id) !== true) {
+        if ($this->scroll_id === null) {
             throw new Exceptions\RuntimeException(
                 'scroll_id is required for Clearscroll'
             );
@@ -48,7 +48,7 @@ class ClearScroll extends AbstractEndpoint
         $scroll_id = $this->scroll_id;
         $uri = "/_search/scroll/$scroll_id";
 
-        if (isset($scroll_id) === true) {
+        if (isset($scroll_id)) {
             $uri = "/_search/scroll/$scroll_id";
         }
 

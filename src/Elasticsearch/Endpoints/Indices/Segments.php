@@ -23,7 +23,7 @@ class Segments extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_segments";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_segments";
         }
 

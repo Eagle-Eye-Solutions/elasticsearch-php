@@ -29,7 +29,7 @@ class Delete extends AbstractEndpoint
      */
     public function setRepository($repository)
     {
-        if (isset($repository) !== true) {
+        if (!isset($repository)) {
             return $this;
         }
 
@@ -45,7 +45,7 @@ class Delete extends AbstractEndpoint
      */
     public function setSnapshot($snapshot)
     {
-        if (isset($snapshot) !== true) {
+        if (!isset($snapshot)) {
             return $this;
         }
 
@@ -60,12 +60,12 @@ class Delete extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->repository) !== true) {
+        if ($this->repository === null) {
             throw new Exceptions\RuntimeException(
                 'repository is required for Delete'
             );
         }
-        if (isset($this->snapshot) !== true) {
+        if ($this->snapshot === null) {
             throw new Exceptions\RuntimeException(
                 'snapshot is required for Delete'
             );
@@ -74,7 +74,7 @@ class Delete extends AbstractEndpoint
         $snapshot = $this->snapshot;
         $uri = "/_snapshot/$repository/$snapshot";
 
-        if (isset($repository) === true && isset($snapshot) === true) {
+        if (isset($repository) && isset($snapshot)) {
             $uri = "/_snapshot/$repository/$snapshot";
         }
 

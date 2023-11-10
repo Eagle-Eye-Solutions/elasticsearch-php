@@ -24,7 +24,7 @@ class Put extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -41,7 +41,7 @@ class Put extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_settings";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_settings";
         }
 
@@ -68,7 +68,7 @@ class Put extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for Put Settings');
         }
 

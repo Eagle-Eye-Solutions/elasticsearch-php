@@ -23,7 +23,7 @@ class Status extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_status";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_status";
         }
 

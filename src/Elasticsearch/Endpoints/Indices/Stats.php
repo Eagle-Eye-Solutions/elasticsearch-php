@@ -25,7 +25,7 @@ class Stats extends AbstractEndpoint
      */
     public function setMetric($metric)
     {
-        if (isset($metric) !== true) {
+        if (!isset($metric)) {
             return $this;
         }
 
@@ -47,11 +47,11 @@ class Stats extends AbstractEndpoint
         $metric = $this->metric;
         $uri = "/_stats";
 
-        if (isset($index) === true && isset($metric) === true) {
+        if (isset($index) && isset($metric)) {
             $uri = "/$index/_stats/$metric";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_stats";
-        } elseif (isset($metric) === true) {
+        } elseif (isset($metric)) {
             $uri = "/_stats/$metric";
         }
 

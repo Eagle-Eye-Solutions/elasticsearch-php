@@ -20,9 +20,7 @@ class Get extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cluster/settings";
-
-        return $uri;
+        return "/_cluster/settings";
     }
 
     /**

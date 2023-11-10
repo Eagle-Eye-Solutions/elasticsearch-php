@@ -30,7 +30,7 @@ class Get extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_upgrade";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_upgrade";
         }
 

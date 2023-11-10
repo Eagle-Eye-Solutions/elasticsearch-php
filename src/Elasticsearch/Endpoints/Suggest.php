@@ -23,7 +23,7 @@ class Suggest extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -40,7 +40,7 @@ class Suggest extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_suggest";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_suggest";
         }
 
@@ -68,7 +68,7 @@ class Suggest extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for Suggest');
         }
 

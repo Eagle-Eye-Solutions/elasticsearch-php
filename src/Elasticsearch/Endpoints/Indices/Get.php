@@ -20,11 +20,11 @@ class Get extends AbstractEndpoint
 
     public function setFeature($feature)
     {
-        if (isset($feature) !== true) {
+        if (!isset($feature)) {
             return $this;
         }
 
-        if (is_array($feature) === true) {
+        if (is_array($feature)) {
             $feature = implode(",", $feature);
         }
 
@@ -39,7 +39,7 @@ class Get extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Get'
             );
@@ -48,7 +48,7 @@ class Get extends AbstractEndpoint
         $feature = $this->feature;
         $uri = "/$index";
 
-        if (isset($feature) === true) {
+        if (isset($feature)) {
             $uri = "/$index/$feature";
         }
 

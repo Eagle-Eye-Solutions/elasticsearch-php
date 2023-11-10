@@ -23,7 +23,7 @@ class Delete extends AbstractEndpoint
         $index = $this->index;
         $uri = "/$index";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index";
         }
 

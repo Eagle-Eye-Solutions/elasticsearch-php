@@ -23,7 +23,7 @@ class Search extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -41,11 +41,11 @@ class Search extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_search";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_search";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_search";
-        } elseif (isset($type) === true) {
+        } elseif (isset($type)) {
             $uri = "/_all/$type/_search";
         }
 

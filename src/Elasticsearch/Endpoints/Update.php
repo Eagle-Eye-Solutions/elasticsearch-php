@@ -23,7 +23,7 @@ class Update extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -38,17 +38,17 @@ class Update extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->id) !== true) {
+        if ($this->id === null) {
             throw new Exceptions\RuntimeException(
                 'id is required for Update'
             );
         }
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Update'
             );
         }
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for Update'
             );
@@ -58,7 +58,7 @@ class Update extends AbstractEndpoint
         $type = $this->type;
         $uri = "/$index/$type/$id/_update";
 
-        if (isset($index) === true && isset($type) === true && isset($id) === true) {
+        if (isset($index) && isset($type) && isset($id)) {
             $uri = "/$index/$type/$id/_update";
         }
 

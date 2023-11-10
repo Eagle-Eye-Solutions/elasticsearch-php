@@ -23,11 +23,11 @@ class UpdateByQuery extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
-        if (is_array($body) !== true) {
+        if (!is_array($body)) {
             throw new Exceptions\InvalidArgumentException(
                 'Body must be an array'
             );
@@ -44,7 +44,7 @@ class UpdateByQuery extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for UpdateByQuery'
             );
@@ -52,10 +52,10 @@ class UpdateByQuery extends AbstractEndpoint
         $index = $this->index;
         $type = $this->type;
         $uri = "/$index/_update_by_query";
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_update_by_query";
         }
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_update_by_query";
         }
 

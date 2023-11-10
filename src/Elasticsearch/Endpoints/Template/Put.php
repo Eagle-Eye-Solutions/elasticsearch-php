@@ -23,7 +23,7 @@ class Put extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -38,16 +38,15 @@ class Put extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->id) !== true) {
+        if ($this->id === null) {
             throw new Exceptions\RuntimeException(
                 'id is required for Put'
             );
         }
 
         $templateId = $this->id;
-        $uri = "/_search/template/$templateId";
 
-        return $uri;
+        return "/_search/template/$templateId";
     }
 
     /**

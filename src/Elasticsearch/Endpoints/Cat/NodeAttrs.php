@@ -20,9 +20,7 @@ class NodeAttrs extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cat/nodeattrs";
-
-        return $uri;
+        return "/_cat/nodeattrs";
     }
 
     /**

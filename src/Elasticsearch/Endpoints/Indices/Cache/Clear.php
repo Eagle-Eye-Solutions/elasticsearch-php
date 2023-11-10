@@ -23,7 +23,7 @@ class Clear extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_cache/clear";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_cache/clear";
         }
 

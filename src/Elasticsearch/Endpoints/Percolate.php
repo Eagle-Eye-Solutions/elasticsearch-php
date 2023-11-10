@@ -23,7 +23,7 @@ class Percolate extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -38,12 +38,12 @@ class Percolate extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Percolate'
             );
         }
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for Percolate'
             );
@@ -53,7 +53,7 @@ class Percolate extends AbstractEndpoint
         $id = $this->id;
         $uri = "/$index/$type/_percolate";
 
-        if (isset($id) === true) {
+        if (isset($id)) {
             $uri = "/$index/$type/$id/_percolate";
         }
 

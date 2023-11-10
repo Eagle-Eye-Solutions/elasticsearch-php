@@ -20,9 +20,7 @@ class Plugins extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cat/plugins";
-
-        return $uri;
+        return "/_cat/plugins";
     }
 
     /**

@@ -21,7 +21,7 @@ class Shutdown extends AbstractNodesEndpoint
         $node_id = $this->nodeID;
         $uri = "/_shutdown";
 
-        if (isset($node_id) === true) {
+        if (isset($node_id)) {
             $uri = "/_cluster/nodes/$node_id/_shutdown";
         }
 

@@ -18,9 +18,7 @@ class Info extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/";
-
-        return $uri;
+        return "/";
     }
 
     /**

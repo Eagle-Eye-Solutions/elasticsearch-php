@@ -20,9 +20,7 @@ class Help extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cat";
-
-        return $uri;
+        return "/_cat";
     }
 
     /**

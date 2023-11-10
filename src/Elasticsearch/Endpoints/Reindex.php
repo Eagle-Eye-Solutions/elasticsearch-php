@@ -23,11 +23,11 @@ class Reindex extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
-        if (is_array($body) !== true) {
+        if (!is_array($body)) {
             throw new Exceptions\InvalidArgumentException(
                 'Body must be an array'
             );
@@ -43,9 +43,7 @@ class Reindex extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_reindex";
-
-        return $uri;
+        return "/_reindex";
     }
 
 
@@ -69,7 +67,7 @@ class Reindex extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for POST');
         }
 

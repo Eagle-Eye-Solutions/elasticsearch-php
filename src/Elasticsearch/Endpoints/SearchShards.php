@@ -22,11 +22,11 @@ class SearchShards extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_search_shards";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_search_shards";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_search_shards";
-        } elseif (isset($type) === true) {
+        } elseif (isset($type)) {
             $uri = "/_all/$type/_search_shards";
         }
 

@@ -27,7 +27,7 @@ class Cancel extends AbstractEndpoint
      */
     public function setTaskId($task_id)
     {
-        if (isset($task_id) !== true) {
+        if (!isset($task_id)) {
             return $this;
         }
 
@@ -44,7 +44,7 @@ class Cancel extends AbstractEndpoint
     {
         $task_id = $this->task_id;
         $uri = "/_tasks/_cancel";
-        if (isset($task_id) === true) {
+        if (isset($task_id)) {
             $uri = "/_tasks/$task_id/_cancel";
         }
 

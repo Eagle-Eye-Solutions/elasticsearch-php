@@ -25,7 +25,7 @@ class ShardStores extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_shard_stores";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_shard_stores";
         }
 

@@ -22,13 +22,13 @@ class Types extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Types Exists'
             );
         }
 
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for Types Exists'
             );
@@ -36,9 +36,8 @@ class Types extends AbstractEndpoint
 
         $index = $this->index;
         $type = $this->type;
-        $uri = "/$index/$type";
 
-        return $uri;
+        return "/$index/$type";
     }
 
     /**

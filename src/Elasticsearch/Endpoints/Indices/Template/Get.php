@@ -26,7 +26,7 @@ class Get extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -44,7 +44,7 @@ class Get extends AbstractEndpoint
         $name = $this->name;
         $uri = "/_template";
 
-        if (isset($name) === true) {
+        if (isset($name)) {
             $uri = "/_template/$name";
         }
 

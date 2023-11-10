@@ -25,7 +25,7 @@ class Exists extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -43,11 +43,11 @@ class Exists extends AbstractEndpoint
         $name = $this->name;
         $uri = "/_alias/$name";
 
-        if (isset($index) === true && isset($name) === true) {
+        if (isset($index) && isset($name)) {
             $uri = "/$index/_alias/$name";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_alias";
-        } elseif (isset($name) === true) {
+        } elseif (isset($name)) {
             $uri = "/_alias/$name";
         }
 

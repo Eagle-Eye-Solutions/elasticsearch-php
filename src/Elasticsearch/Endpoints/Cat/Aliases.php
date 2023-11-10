@@ -25,7 +25,7 @@ class Aliases extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -42,7 +42,7 @@ class Aliases extends AbstractEndpoint
         $name = $this->name;
         $uri = "/_cat/aliases";
 
-        if (isset($name) === true) {
+        if (isset($name)) {
             $uri = "/_cat/aliases/$name";
         }
 

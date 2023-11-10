@@ -23,7 +23,7 @@ class Health extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_cluster/health";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/_cluster/health/$index";
         }
 

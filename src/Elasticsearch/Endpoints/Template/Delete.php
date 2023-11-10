@@ -22,15 +22,14 @@ class Delete extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->id) !== true) {
+        if ($this->id === null) {
             throw new Exceptions\RuntimeException(
                 'id is required for Delete'
             );
         }
         $templateId = $this->id;
-        $uri = "/_search/template/$templateId";
 
-        return $uri;
+        return "/_search/template/$templateId";
     }
 
     /**

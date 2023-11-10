@@ -27,7 +27,7 @@ class Get extends AbstractEndpoint
      */
     public function setTaskId($task_id)
     {
-        if (isset($task_id) !== true) {
+        if (!isset($task_id)) {
             return $this;
         }
 
@@ -44,7 +44,7 @@ class Get extends AbstractEndpoint
     {
         $task_id = $this->task_id;
         $uri = "/_tasks";
-        if (isset($task_id) === true) {
+        if (isset($task_id)) {
             $uri = "/_tasks/$task_id";
         }
 

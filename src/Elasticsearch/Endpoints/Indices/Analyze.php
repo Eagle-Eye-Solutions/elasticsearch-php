@@ -24,7 +24,7 @@ class Analyze extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -41,7 +41,7 @@ class Analyze extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_analyze";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_analyze";
         }
 

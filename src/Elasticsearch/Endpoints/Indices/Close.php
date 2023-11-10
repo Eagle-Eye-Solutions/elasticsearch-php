@@ -22,7 +22,7 @@ class Close extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Close'
             );
@@ -30,7 +30,7 @@ class Close extends AbstractEndpoint
         $index = $this->index;
         $uri = "/$index/_close";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_close";
         }
 

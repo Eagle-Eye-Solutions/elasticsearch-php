@@ -26,7 +26,7 @@ class Index extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -51,13 +51,13 @@ class Index extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Index'
             );
         }
 
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for Index'
             );
@@ -68,7 +68,7 @@ class Index extends AbstractEndpoint
         $type = $this->type;
         $uri = "/$index/$type";
 
-        if (isset($id) === true) {
+        if (isset($id)) {
             $uri = "/$index/$type/$id";
         }
 
@@ -81,7 +81,7 @@ class Index extends AbstractEndpoint
 
     private function addCreateFlag()
     {
-        if (isset($this->id) === true) {
+        if ($this->id !== null) {
             return '/_create';
         } else {
             $this->params['op_type'] = 'create';
@@ -114,7 +114,7 @@ class Index extends AbstractEndpoint
      */
     protected function getMethod()
     {
-        if (isset($this->id) === true) {
+        if ($this->id !== null) {
             return 'PUT';
         } else {
             return 'POST';
@@ -127,7 +127,7 @@ class Index extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Document body must be set for index request');
         } else {
             return $this->body;

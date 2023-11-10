@@ -20,9 +20,7 @@ class Repositories extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cat/repositories";
-
-        return $uri;
+        return "/_cat/repositories";
     }
 
     /**

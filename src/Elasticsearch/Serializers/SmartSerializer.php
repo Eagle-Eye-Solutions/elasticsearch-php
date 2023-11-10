@@ -24,7 +24,7 @@ class SmartSerializer implements SerializerInterface
      */
     public function serialize($data)
     {
-        if (is_string($data) === true) {
+        if (is_string($data)) {
             return $data;
         } else {
             $data = json_encode($data);
@@ -48,7 +48,7 @@ class SmartSerializer implements SerializerInterface
      */
     public function deserialize($data, $headers)
     {
-        if (isset($headers['content_type']) === true) {
+        if (isset($headers['content_type'])) {
             if (strpos($headers['content_type'], 'json') !== false) {
                 return $this->decode($data);
             } else {
@@ -71,7 +71,7 @@ class SmartSerializer implements SerializerInterface
      */
     private function decode($data)
     {
-        if ($data === null || strlen($data) === 0) {
+        if ($data === null || (string) $data === '') {
             return "";
         }
 

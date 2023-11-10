@@ -25,7 +25,7 @@ class Get extends AbstractEndpoint
      */
     public function setRepository($repository)
     {
-        if (isset($repository) !== true) {
+        if (!isset($repository)) {
             return $this;
         }
 
@@ -42,7 +42,7 @@ class Get extends AbstractEndpoint
         $repository = $this->repository;
         $uri = "/_snapshot";
 
-        if (isset($repository) === true) {
+        if (isset($repository)) {
             $uri = "/_snapshot/$repository";
         }
 

@@ -41,11 +41,11 @@ abstract class AbstractNamespace
      */
     public function extractArgument(&$params, $arg)
     {
-        if (is_object($params) === true) {
+        if (is_object($params)) {
             $params = (array)$params;
         }
 
-        if (isset($params[$arg]) === true) {
+        if (isset($params[$arg])) {
             $val = $params[$arg];
             unset($params[$arg]);
 

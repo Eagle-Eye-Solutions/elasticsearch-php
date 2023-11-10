@@ -23,7 +23,7 @@ class SearchExists extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -41,11 +41,11 @@ class SearchExists extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_search/exists";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_search/exists";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_search/exists";
-        } elseif (isset($type) === true) {
+        } elseif (isset($type)) {
             $uri = "/_all/$type/_search/exists";
         }
 

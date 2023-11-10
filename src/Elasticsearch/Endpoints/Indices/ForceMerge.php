@@ -23,7 +23,7 @@ class ForceMerge extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_forcemerge";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_forcemerge";
         }
 

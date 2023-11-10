@@ -24,7 +24,7 @@ class Create extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -39,7 +39,7 @@ class Create extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Create'
             );
@@ -47,7 +47,7 @@ class Create extends AbstractEndpoint
         $index = $this->index;
         $uri = "/$index";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index";
         }
 
@@ -71,9 +71,9 @@ class Create extends AbstractEndpoint
      */
     protected function getMethod()
     {
-        if (is_array($this->body) && isset($this->body['mappings']) === true) {
+        if (is_array($this->body) && isset($this->body['mappings'])) {
             return 'POST';
-        } elseif (is_object($this->body) && isset($this->body->mappings) === true) {
+        } elseif (is_object($this->body) && isset($this->body->mappings)) {
             return 'POST';
         }
         return 'PUT';

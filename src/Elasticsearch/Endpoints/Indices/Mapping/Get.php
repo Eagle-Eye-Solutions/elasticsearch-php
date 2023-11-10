@@ -24,11 +24,11 @@ class Get extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_mapping";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/_mapping/$type";
-        } elseif (isset($type) === true) {
+        } elseif (isset($type)) {
             $uri = "/_mapping/$type";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_mapping";
         }
 

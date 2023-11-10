@@ -23,7 +23,7 @@ class Recovery extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_cat/recovery";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/_cat/recovery/$index";
         }
 

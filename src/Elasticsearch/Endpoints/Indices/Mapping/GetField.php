@@ -26,11 +26,11 @@ class GetField extends AbstractEndpoint
      */
     public function setFields($fields)
     {
-        if (isset($fields) !== true) {
+        if (!isset($fields)) {
             return $this;
         }
 
-        if (is_array($fields) === true) {
+        if (is_array($fields)) {
             $fields = implode(",", $fields);
         }
 
@@ -45,7 +45,7 @@ class GetField extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->fields) !== true) {
+        if ($this->fields === null) {
             throw new Exceptions\RuntimeException(
                 'fields is required for Get Field Mapping'
             );

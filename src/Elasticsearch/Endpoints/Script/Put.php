@@ -26,7 +26,7 @@ class Put extends AbstractEndpoint
      */
     public function setLang($lang)
     {
-        if (isset($lang) !== true) {
+        if (!isset($lang)) {
             return $this;
         }
 
@@ -42,7 +42,7 @@ class Put extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -57,21 +57,20 @@ class Put extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->lang) !== true) {
+        if ($this->lang === null) {
             throw new Exceptions\RuntimeException(
                 'lang is required for Put'
             );
         }
-        if (isset($this->id) !== true) {
+        if ($this->id === null) {
             throw new Exceptions\RuntimeException(
                 'id is required for put'
             );
         }
         $id = $this->id;
         $lang = $this->lang;
-        $uri = "/_scripts/$lang/$id";
 
-        return $uri;
+        return "/_scripts/$lang/$id";
     }
 
     /**

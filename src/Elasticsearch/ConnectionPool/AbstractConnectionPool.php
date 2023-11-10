@@ -63,7 +63,7 @@ abstract class AbstractConnectionPool implements ConnectionPoolInterface
             }
         }
 
-        if (isset($connectionPoolParams['randomizeHosts']) === true
+        if (isset($connectionPoolParams['randomizeHosts'])
             && $connectionPoolParams['randomizeHosts'] === true) {
             shuffle($connections);
         }

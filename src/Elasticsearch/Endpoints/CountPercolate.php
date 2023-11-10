@@ -23,7 +23,7 @@ class CountPercolate extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -38,13 +38,13 @@ class CountPercolate extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for CountPercolate'
             );
         }
 
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for CountPercolate'
             );
@@ -55,7 +55,7 @@ class CountPercolate extends AbstractEndpoint
         $id = $this->id;
         $uri = "/$index/$type/_percolate/count";
 
-        if (isset($id) === true) {
+        if (isset($id)) {
             $uri = "/$index/$type/$id/_percolate/count";
         }
 

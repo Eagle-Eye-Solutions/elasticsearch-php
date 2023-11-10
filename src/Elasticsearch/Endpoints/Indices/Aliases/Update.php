@@ -24,7 +24,7 @@ class Update extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -38,9 +38,7 @@ class Update extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_aliases";
-
-        return $uri;
+        return "/_aliases";
     }
 
     /**
@@ -60,7 +58,7 @@ class Update extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for Update Aliases');
         }
 

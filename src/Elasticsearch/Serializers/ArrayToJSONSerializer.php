@@ -22,7 +22,7 @@ class ArrayToJSONSerializer implements SerializerInterface
      */
     public function serialize($data)
     {
-        if (is_string($data) === true) {
+        if (is_string($data)) {
             return $data;
         } else {
             $data = json_encode($data);

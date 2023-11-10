@@ -26,7 +26,7 @@ class Get extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -46,17 +46,17 @@ class Get extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_warmer";
 
-        if (isset($index) === true && isset($type) === true && isset($name) === true) {
+        if (isset($index) && isset($type) && isset($name)) {
             $uri = "/$index/$type/_warmer/$name";
-        } elseif (isset($index) === true && isset($name) === true) {
+        } elseif (isset($index) && isset($name)) {
             $uri = "/$index/_warmer/$name";
-        } elseif (isset($index) === true && isset($type) === true) {
+        } elseif (isset($index) && isset($type)) {
             throw new Exceptions\RuntimeException(
                 'Invalid index/type/name combination. If index + type are defined, name must also be defined'
             );
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_warmer";
-        } elseif (isset($name) === true) {
+        } elseif (isset($name)) {
             $uri = "/_warmer/$name";
         }
 

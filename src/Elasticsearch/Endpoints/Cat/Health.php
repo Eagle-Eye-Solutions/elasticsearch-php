@@ -20,9 +20,7 @@ class Health extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cat/health";
-
-        return $uri;
+        return "/_cat/health";
     }
 
     /**

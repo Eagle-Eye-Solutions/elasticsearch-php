@@ -23,7 +23,7 @@ class Count extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_cat/count";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/_cat/count/$index";
         }
 

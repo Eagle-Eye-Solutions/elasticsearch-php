@@ -23,7 +23,7 @@ class Indices extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_cat/indices";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/_cat/indices/$index";
         }
 

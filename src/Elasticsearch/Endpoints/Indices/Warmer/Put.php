@@ -27,7 +27,7 @@ class Put extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -43,7 +43,7 @@ class Put extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -58,7 +58,7 @@ class Put extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->name) !== true) {
+        if ($this->name === null) {
             throw new Exceptions\RuntimeException(
                 'name is required for Put'
             );
@@ -68,11 +68,11 @@ class Put extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_warmer/$name";
 
-        if (isset($index) === true && isset($type) === true && isset($name) === true) {
+        if (isset($index) && isset($type) && isset($name)) {
             $uri = "/$index/$type/_warmer/$name";
-        } elseif (isset($index) === true && isset($name) === true) {
+        } elseif (isset($index) && isset($name)) {
             $uri = "/$index/_warmer/$name";
-        } elseif (isset($name) === true) {
+        } elseif (isset($name)) {
             $uri = "/_warmer/$name";
         }
 
@@ -99,7 +99,7 @@ class Put extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for Put Warmer');
         }
 

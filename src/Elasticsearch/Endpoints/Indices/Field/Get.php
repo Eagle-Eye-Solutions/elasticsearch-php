@@ -26,7 +26,7 @@ class Get extends AbstractEndpoint
      */
     public function setField($field)
     {
-        if (isset($field) !== true) {
+        if (!isset($field)) {
             return $this;
         }
 
@@ -41,7 +41,7 @@ class Get extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->field) !== true) {
+        if ($this->field === null) {
             throw new Exceptions\RuntimeException(
                 'field is required for Get'
             );
@@ -51,13 +51,13 @@ class Get extends AbstractEndpoint
         $field = $this->field;
         $uri = "/_mapping/field/$field";
 
-        if (isset($index) === true && isset($type) === true && isset($field) === true) {
+        if (isset($index) && isset($type) && isset($field)) {
             $uri = "/$index/_mapping/$type/field/$field";
-        } elseif (isset($type) === true && isset($field) === true) {
+        } elseif (isset($type) && isset($field)) {
             $uri = "/_mapping/$type/field/$field";
-        } elseif (isset($index) === true && isset($field) === true) {
+        } elseif (isset($index) && isset($field)) {
             $uri = "/$index/_mapping/field/$field";
-        } elseif (isset($field) === true) {
+        } elseif (isset($field)) {
             $uri = "/_mapping/field/$field";
         }
 

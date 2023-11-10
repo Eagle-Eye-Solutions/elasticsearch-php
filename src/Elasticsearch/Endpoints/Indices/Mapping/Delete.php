@@ -22,12 +22,12 @@ class Delete extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Delete'
             );
         }
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for Delete'
             );
@@ -36,7 +36,7 @@ class Delete extends AbstractEndpoint
         $type = $this->type;
         $uri = "/$index/$type/_mapping";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_mapping";
         }
 

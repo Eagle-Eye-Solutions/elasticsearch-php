@@ -24,7 +24,7 @@ class Put extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -38,9 +38,7 @@ class Put extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cluster/settings";
-
-        return $uri;
+        return "/_cluster/settings";
     }
 
     /**

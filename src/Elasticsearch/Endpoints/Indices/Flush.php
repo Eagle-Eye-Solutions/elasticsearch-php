@@ -40,7 +40,7 @@ class Flush extends AbstractEndpoint
         $index = $this->index;
         $uri = "/_flush";
 
-        if (isset($index) === true) {
+        if (isset($index)) {
             $uri = "/$index/_flush";
         }
 

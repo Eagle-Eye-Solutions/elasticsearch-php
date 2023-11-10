@@ -26,7 +26,7 @@ class Stats extends AbstractEndpoint
      */
     public function setNodeID($node_id)
     {
-        if (isset($node_id) !== true) {
+        if (!isset($node_id)) {
             return $this;
         }
 
@@ -43,7 +43,7 @@ class Stats extends AbstractEndpoint
         $node_id = $this->nodeID;
         $uri = "/_cluster/stats";
 
-        if (isset($node_id) === true) {
+        if (isset($node_id)) {
             $uri = "/_cluster/stats/nodes/$node_id";
         }
 

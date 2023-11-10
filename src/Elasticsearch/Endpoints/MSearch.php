@@ -40,11 +40,11 @@ class MSearch extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
-        if (is_array($body) === true) {
+        if (is_array($body)) {
             $bulkBody = "";
             foreach ($body as $item) {
                 $bulkBody .= $this->serializer->serialize($item) . "\n";
@@ -66,11 +66,11 @@ class MSearch extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_msearch";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_msearch";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_msearch";
-        } elseif (isset($type) === true) {
+        } elseif (isset($type)) {
             $uri = "/_all/$type/_msearch";
         }
 
@@ -93,7 +93,7 @@ class MSearch extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for MSearch');
         }
 

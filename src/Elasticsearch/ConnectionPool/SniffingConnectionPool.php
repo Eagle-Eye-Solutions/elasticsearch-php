@@ -128,18 +128,16 @@ class SniffingConnectionPool extends AbstractConnectionPool implements Connectio
 
     private function parseClusterState($transportSchema, $nodeInfo)
     {
-        $pattern       = '/\/([^:]*):([0-9]+)\]/';
+        $pattern       = '/\/([^:]*):(\d+)\]/';
         $schemaAddress = $transportSchema . '_address';
         $hosts         = array();
 
         foreach ($nodeInfo['nodes'] as $node) {
-            if (isset($node[$schemaAddress]) === true) {
-                if (preg_match($pattern, $node[$schemaAddress], $match) === 1) {
-                    $hosts[] = array(
-                        'host' => $match[1],
-                        'port' => (int) $match[2],
-                    );
-                }
+            if (isset($node[$schemaAddress]) === true && preg_match($pattern, $node[$schemaAddress], $match) === 1) {
+                $hosts[] = array(
+                    'host' => $match[1],
+                    'port' => (int) $match[2],
+                );
             }
         }
 
@@ -148,7 +146,7 @@ class SniffingConnectionPool extends AbstractConnectionPool implements Connectio
 
     private function setConnectionPoolParams($connectionPoolParams)
     {
-        if (isset($connectionPoolParams['sniffingInterval']) === true) {
+        if (isset($connectionPoolParams['sniffingInterval'])) {
             $this->sniffingInterval = $connectionPoolParams['sniffingInterval'];
         }
     }

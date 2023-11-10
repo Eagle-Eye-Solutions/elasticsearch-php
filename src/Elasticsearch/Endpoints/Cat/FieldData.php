@@ -24,7 +24,7 @@ class FieldData extends AbstractEndpoint
      */
     public function setFields($fields)
     {
-        if (isset($fields) !== true) {
+        if (!isset($fields)) {
             return $this;
         }
 
@@ -41,7 +41,7 @@ class FieldData extends AbstractEndpoint
         $fields = $this->fields;
         $uri = "/_cat/fielddata";
 
-        if (isset($fields) === true) {
+        if (isset($fields)) {
             $uri = "/_cat/fielddata/$fields";
         }
 

@@ -25,7 +25,7 @@ class Allocation extends AbstractEndpoint
      */
     public function setNodeId($node_id)
     {
-        if (isset($node_id) !== true) {
+        if (!isset($node_id)) {
             return $this;
         }
 
@@ -42,7 +42,7 @@ class Allocation extends AbstractEndpoint
         $node_id = $this->node_id;
         $uri = "/_cat/allocation";
 
-        if (isset($node_id) === true) {
+        if (isset($node_id)) {
             $uri = "/_cat/allocation/$node_id";
         }
 

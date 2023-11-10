@@ -23,11 +23,11 @@ class Info extends AbstractNodesEndpoint
      */
     public function setMetric($metric)
     {
-        if (isset($metric) !== true) {
+        if (!isset($metric)) {
             return $this;
         }
 
-        if (is_array($metric) === true) {
+        if (is_array($metric)) {
             $metric = implode(",", $metric);
         }
 
@@ -45,11 +45,11 @@ class Info extends AbstractNodesEndpoint
         $metric = $this->metric;
         $uri = "/_nodes";
 
-        if (isset($node_id) === true && isset($metric) === true) {
+        if (isset($node_id) && isset($metric)) {
             $uri = "/_nodes/$node_id/$metric";
-        } elseif (isset($metric) === true) {
+        } elseif (isset($metric)) {
             $uri = "/_nodes/$metric";
-        } elseif (isset($node_id) === true) {
+        } elseif (isset($node_id)) {
             $uri = "/_nodes/$node_id";
         }
 

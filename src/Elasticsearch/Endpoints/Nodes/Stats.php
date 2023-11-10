@@ -27,11 +27,11 @@ class Stats extends AbstractNodesEndpoint
      */
     public function setMetric($metric)
     {
-        if (isset($metric) !== true) {
+        if (!isset($metric)) {
             return $this;
         }
 
-        if (is_array($metric) === true) {
+        if (is_array($metric)) {
             $metric = implode(",", $metric);
         }
 
@@ -47,11 +47,11 @@ class Stats extends AbstractNodesEndpoint
      */
     public function setIndexMetric($indexMetric)
     {
-        if (isset($indexMetric) !== true) {
+        if (!isset($indexMetric)) {
             return $this;
         }
 
-        if (is_array($indexMetric) === true) {
+        if (is_array($indexMetric)) {
             $indexMetric = implode(",", $indexMetric);
         }
 
@@ -70,15 +70,15 @@ class Stats extends AbstractNodesEndpoint
         $node_id = $this->nodeID;
         $uri = "/_nodes/stats";
 
-        if (isset($node_id) === true && isset($metric) === true && isset($index_metric) === true) {
+        if (isset($node_id) && isset($metric) && isset($index_metric)) {
             $uri = "/_nodes/$node_id/stats/$metric/$index_metric";
-        } elseif (isset($metric) === true && isset($index_metric) === true) {
+        } elseif (isset($metric) && isset($index_metric)) {
             $uri = "/_nodes/stats/$metric/$index_metric";
-        } elseif (isset($node_id) === true && isset($metric) === true) {
+        } elseif (isset($node_id) && isset($metric)) {
             $uri = "/_nodes/$node_id/stats/$metric";
-        } elseif (isset($metric) === true) {
+        } elseif (isset($metric)) {
             $uri = "/_nodes/stats/$metric";
-        } elseif (isset($node_id) === true) {
+        } elseif (isset($node_id)) {
             $uri = "/_nodes/$node_id/stats";
         }
 

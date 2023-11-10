@@ -23,7 +23,7 @@ class DeleteByQuery extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -38,7 +38,7 @@ class DeleteByQuery extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for DeleteByQuery'
             );
@@ -47,9 +47,9 @@ class DeleteByQuery extends AbstractEndpoint
         $type = $this->type;
         $uri = "/$index/_query";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_query";
-        } elseif (isset($index) === true) {
+        } elseif (isset($index)) {
             $uri = "/$index/_query";
         }
 

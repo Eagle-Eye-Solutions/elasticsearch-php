@@ -20,9 +20,7 @@ class PendingTasks extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cluster/pending_tasks";
-
-        return $uri;
+        return "/_cluster/pending_tasks";
     }
 
     /**

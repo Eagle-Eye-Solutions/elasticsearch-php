@@ -27,7 +27,7 @@ class Put extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -43,7 +43,7 @@ class Put extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -58,7 +58,7 @@ class Put extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->name) !== true) {
+        if ($this->name === null) {
             throw new Exceptions\RuntimeException(
                 'name is required for Put'
             );
@@ -66,7 +66,7 @@ class Put extends AbstractEndpoint
         $name = $this->name;
         $uri = "/_template/$name";
 
-        if (isset($name) === true) {
+        if (isset($name)) {
             $uri = "/_template/$name";
         }
 
@@ -93,7 +93,7 @@ class Put extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for Put Template');
         }
 

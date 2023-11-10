@@ -16,6 +16,7 @@ use Elasticsearch\Transport;
  */
 class MPercolate extends AbstractEndpoint implements BulkEndpointInterface
 {
+    public $serializer;
     /**
      * @param Transport $transport
      * @param SerializerInterface $serializer
@@ -33,11 +34,11 @@ class MPercolate extends AbstractEndpoint implements BulkEndpointInterface
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
-        if (is_array($body) === true) {
+        if (is_array($body)) {
             $bulkBody = "";
             foreach ($body as $item) {
                 $bulkBody .= $this->serializer->serialize($item) . "\n";

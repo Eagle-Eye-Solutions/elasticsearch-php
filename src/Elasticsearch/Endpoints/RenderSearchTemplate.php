@@ -23,7 +23,7 @@ class RenderSearchTemplate extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -42,7 +42,7 @@ class RenderSearchTemplate extends AbstractEndpoint
 
         $uri = "/_render/template";
 
-        if (isset($id) === true) {
+        if (isset($id)) {
             $uri = "/_render/template/$id";
         }
 

@@ -21,7 +21,7 @@ class HotThreads extends AbstractNodesEndpoint
         $node_id = $this->nodeID;
         $uri = "/_cluster/nodes/hotthreads";
 
-        if (isset($node_id) === true) {
+        if (isset($node_id)) {
             $uri = "/_cluster/nodes/$node_id/hotthreads";
         }
 

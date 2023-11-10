@@ -24,6 +24,7 @@ use Elasticsearch\Namespaces\TasksNamespace;
  */
 class Client
 {
+    public $tasks;
     /**
      * @var Transport
      */
@@ -1783,11 +1784,11 @@ class Client
      */
     public function extractArgument(&$params, $arg)
     {
-        if (is_object($params) === true) {
+        if (is_object($params)) {
             $params = (array)$params;
         }
 
-        if (isset($params[$arg]) === true) {
+        if (isset($params[$arg])) {
             $val = $params[$arg];
             unset($params[$arg]);
 
@@ -1807,16 +1808,12 @@ class Client
             throw new InvalidArgumentException("$name cannot be null.");
         }
 
-        if (is_string($var)) {
-            if (strlen($var) === 0) {
-                throw new InvalidArgumentException("$name cannot be an empty string");
-            }
+        if (is_string($var) && $var === '') {
+            throw new InvalidArgumentException("$name cannot be an empty string");
         }
 
-        if (is_array($var)) {
-            if (strlen(implode("", $var)) === 0) {
-                throw new InvalidArgumentException("$name cannot be an array of empty strings");
-            }
+        if (is_array($var) && implode("", $var) === '') {
+            throw new InvalidArgumentException("$name cannot be an array of empty strings");
         }
     }
 }

@@ -16,6 +16,7 @@ use Elasticsearch\Transport;
  */
 class Bulk extends AbstractEndpoint implements BulkEndpointInterface
 {
+    public $serializer;
     /**
      * @param Transport $transport
      * @param SerializerInterface $serializer
@@ -37,7 +38,7 @@ class Bulk extends AbstractEndpoint implements BulkEndpointInterface
             return $this;
         }
 
-        if (is_array($body) === true || $body instanceof \Traversable) {
+        if (is_array($body) || $body instanceof \Traversable) {
             foreach ($body as $item) {
                 $this->body .= $this->serializer->serialize($item) . "\n";
             }

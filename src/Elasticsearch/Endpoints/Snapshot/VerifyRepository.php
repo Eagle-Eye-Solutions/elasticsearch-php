@@ -27,7 +27,7 @@ class VerifyRepository extends AbstractEndpoint
      */
     public function setRepository($repository)
     {
-        if (isset($repository) !== true) {
+        if (!isset($repository)) {
             return $this;
         }
 
@@ -43,15 +43,14 @@ class VerifyRepository extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->repository) !== true) {
+        if ($this->repository === null) {
             throw new Exceptions\RuntimeException(
                 'repository is required for VerifyRepository'
             );
         }
         $repository = $this->repository;
-        $uri = "/_snapshot/$repository/_verify";
 
-        return $uri;
+        return "/_snapshot/$repository/_verify";
     }
 
 

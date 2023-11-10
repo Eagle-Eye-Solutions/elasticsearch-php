@@ -20,9 +20,7 @@ class Nodes extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cat/nodes";
-
-        return $uri;
+        return "/_cat/nodes";
     }
 
     /**

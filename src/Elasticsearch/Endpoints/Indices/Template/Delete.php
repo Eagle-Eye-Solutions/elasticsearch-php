@@ -26,7 +26,7 @@ class Delete extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -41,7 +41,7 @@ class Delete extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->name) !== true) {
+        if ($this->name === null) {
             throw new Exceptions\RuntimeException(
                 'name is required for Delete'
             );
@@ -49,7 +49,7 @@ class Delete extends AbstractEndpoint
         $name = $this->name;
         $uri = "/_template/$name";
 
-        if (isset($name) === true) {
+        if (isset($name)) {
             $uri = "/_template/$name";
         }
 

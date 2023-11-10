@@ -38,7 +38,7 @@ class TermVectors extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -53,17 +53,17 @@ class TermVectors extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for TermVector'
             );
         }
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for TermVector'
             );
         }
-        if (isset($this->id) !== true && isset($this->body['doc']) !== true) {
+        if ($this->id === null && !isset($this->body['doc'])) {
            throw new Exceptions\RuntimeException(
                'id or doc is required for TermVectors'
            );

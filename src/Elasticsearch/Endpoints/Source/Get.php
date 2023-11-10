@@ -22,17 +22,17 @@ class Get extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->id) !== true) {
+        if ($this->id === null) {
             throw new Exceptions\RuntimeException(
                 'id is required for Get'
             );
         }
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Get'
             );
         }
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for Get'
             );
@@ -42,7 +42,7 @@ class Get extends AbstractEndpoint
         $type = $this->type;
         $uri = "/$index/$type/$id/_source";
 
-        if (isset($index) === true && isset($type) === true && isset($id) === true) {
+        if (isset($index) && isset($type) && isset($id)) {
             $uri = "/$index/$type/$id/_source";
         }
 

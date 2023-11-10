@@ -27,7 +27,7 @@ class Delete extends AbstractEndpoint
      */
     public function setName($name)
     {
-        if (isset($name) !== true) {
+        if (!isset($name)) {
             return $this;
         }
 
@@ -42,12 +42,12 @@ class Delete extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->index) !== true) {
+        if ($this->index === null) {
             throw new Exceptions\RuntimeException(
                 'index is required for Delete'
             );
         }
-        if (isset($this->name) !== true) {
+        if ($this->name === null) {
             throw new Exceptions\RuntimeException(
                 'name is required for Delete'
             );
@@ -56,7 +56,7 @@ class Delete extends AbstractEndpoint
         $name = $this->name;
         $uri = "/$index/_warmer/$name";
 
-        if (isset($index) === true && isset($name) === true) {
+        if (isset($index) && isset($name)) {
             $uri = "/$index/_warmer/$name";
         }
 

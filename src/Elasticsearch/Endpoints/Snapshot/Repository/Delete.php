@@ -26,7 +26,7 @@ class Delete extends AbstractEndpoint
      */
     public function setRepository($repository)
     {
-        if (isset($repository) !== true) {
+        if (!isset($repository)) {
             return $this;
         }
 
@@ -41,7 +41,7 @@ class Delete extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->repository) !== true) {
+        if ($this->repository === null) {
             throw new Exceptions\RuntimeException(
                 'repository is required for Delete'
             );
@@ -49,7 +49,7 @@ class Delete extends AbstractEndpoint
         $repository = $this->repository;
         $uri = "/_snapshot/$repository";
 
-        if (isset($repository) === true) {
+        if (isset($repository)) {
             $uri = "/_snapshot/$repository";
         }
 

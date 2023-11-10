@@ -24,7 +24,7 @@ class Put extends AbstractEndpoint
      */
     public function setBody($body)
     {
-        if (isset($body) !== true) {
+        if (!isset($body)) {
             return $this;
         }
 
@@ -39,7 +39,7 @@ class Put extends AbstractEndpoint
      */
     protected function getURI()
     {
-        if (isset($this->type) !== true) {
+        if ($this->type === null) {
             throw new Exceptions\RuntimeException(
                 'type is required for Put'
             );
@@ -48,9 +48,9 @@ class Put extends AbstractEndpoint
         $type = $this->type;
         $uri = "/_mapping/$type";
 
-        if (isset($index) === true && isset($type) === true) {
+        if (isset($index) && isset($type)) {
             $uri = "/$index/$type/_mapping";
-        } elseif (isset($type) === true) {
+        } elseif (isset($type)) {
             $uri = "/_mapping/$type";
         }
 
@@ -79,7 +79,7 @@ class Put extends AbstractEndpoint
      */
     protected function getBody()
     {
-        if (isset($this->body) !== true) {
+        if ($this->body === null) {
             throw new Exceptions\RuntimeException('Body is required for Put Mapping');
         }
 

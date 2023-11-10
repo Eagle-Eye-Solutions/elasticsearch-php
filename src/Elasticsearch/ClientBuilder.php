@@ -119,7 +119,7 @@ class ClientBuilder
             }
         }
 
-        if ($quiet === false && count($config) > 0) {
+        if ($quiet === false && $config !== []) {
             $unknown = implode(array_keys($config));
             throw new RuntimeException("Unknown parameters provided: $unknown");
         }
@@ -147,7 +147,7 @@ class ClientBuilder
             throw new \RuntimeException('Elasticsearch-PHP requires cURL, or a custom HTTP handler.');
         }
 
-        return $future ? Middleware::wrapFuture($default, $future) : $default;
+        return $future instanceof \GuzzleHttp\Ring\Client\CurlMultiHandler ? Middleware::wrapFuture($default, $future) : $default;
     }
 
     /**
@@ -391,13 +391,13 @@ class ClientBuilder
         }
 
         $sslOptions = null;
-        if (isset($this->sslKey)) {
+        if ($this->sslKey !== null) {
             $sslOptions['ssl_key'] = $this->sslKey;
         }
-        if (isset($this->sslCert)) {
+        if ($this->sslCert !== null) {
             $sslOptions['cert'] = $this->sslCert;
         }
-        if (isset($this->sslVerification)) {
+        if ($this->sslVerification !== null) {
             $sslOptions['verify'] = $this->sslVerification;
         }
 
@@ -543,7 +543,7 @@ class ClientBuilder
             if (is_string($host)) {
                 $host = $this->prependMissingScheme($host);
                 $host = $this->extractURIParts($host);
-            } else if (is_array($host)) {
+            } elseif (is_array($host)) {
                 $host = $this->normalizeExtendedHost($host);
             } else {
                 $this->logger->error("Could not parse host: ".print_r($host, true));
@@ -588,7 +588,7 @@ class ClientBuilder
             throw new InvalidArgumentException("Could not parse URI");
         }
 
-        if (isset($parts['port']) !== true) {
+        if (!isset($parts['port'])) {
             $parts['port'] = 9200;
         }
 

@@ -71,15 +71,13 @@ abstract class AbstractEndpoint
      */
     public function performRequest()
     {
-        $promise = $this->transport->performRequest(
+        return $this->transport->performRequest(
             $this->getMethod(),
             $this->getURI(),
             $this->params,
             $this->getBody(),
             $this->options
         );
-
-        return $promise;
     }
 
     /**
@@ -91,7 +89,7 @@ abstract class AbstractEndpoint
      */
     public function setParams($params)
     {
-        if (is_object($params) === true) {
+        if (is_object($params)) {
             $params = (array)$params;
         }
 
@@ -114,7 +112,7 @@ abstract class AbstractEndpoint
             return $this;
         }
 
-        if (is_array($index) === true) {
+        if (is_array($index)) {
             $index = array_map('trim', $index);
             $index = implode(",", $index);
         }
@@ -135,7 +133,7 @@ abstract class AbstractEndpoint
             return $this;
         }
 
-        if (is_array($type) === true) {
+        if (is_array($type)) {
             $type = array_map('trim', $type);
             $type = implode(",", $type);
         }
@@ -210,7 +208,7 @@ abstract class AbstractEndpoint
      */
     private function getOptionalIndex()
     {
-        if (isset($this->index) === true) {
+        if ($this->index !== null) {
             return $this->index;
         } else {
             return '_all';
@@ -222,7 +220,7 @@ abstract class AbstractEndpoint
      */
     private function getOptionalType()
     {
-        if (isset($this->type) === true) {
+        if ($this->type !== null) {
             return $this->type;
         } else {
             return '';
@@ -236,14 +234,14 @@ abstract class AbstractEndpoint
      */
     private function checkUserParams($params)
     {
-        if (isset($params) !== true) {
+        if (!isset($params)) {
             return; //no params, just return.
         }
 
         $whitelist = array_merge($this->getParamWhitelist(), ['client', 'custom', 'filter_path']);
 
-        foreach ($params as $key => $value) {
-            if (array_search($key, $whitelist) === false) {
+        foreach (array_keys($params) as $key) {
+            if (!in_array($key, $whitelist)) {
                 throw new UnexpectedValueException(
                     sprintf(
                         '"%s" is not a valid parameter. Allowed parameters are: "%s"',
@@ -261,13 +259,13 @@ abstract class AbstractEndpoint
     private function extractOptions(&$params)
     {
         // Extract out client options, then start transforming
-        if (isset($params['client']) === true) {
+        if (isset($params['client'])) {
             $this->options['client'] = $params['client'];
             unset($params['client']);
         }
 
         $ignore = isset($this->options['client']['ignore']) ? $this->options['client']['ignore'] : null;
-        if (isset($ignore) === true) {
+        if (isset($ignore)) {
             if (is_string($ignore)) {
                 $this->options['client']['ignore'] = explode(",", $ignore);
             } elseif (is_array($ignore)) {
@@ -280,7 +278,7 @@ abstract class AbstractEndpoint
 
     private function convertCustom($params)
     {
-        if (isset($params['custom']) === true) {
+        if (isset($params['custom'])) {
             foreach ($params['custom'] as $k => $v) {
                 $params[$k] = $v;
             }
@@ -293,10 +291,8 @@ abstract class AbstractEndpoint
     private function convertArraysToStrings($params)
     {
         foreach ($params as $key => &$value) {
-            if (!($key === 'client' || $key == 'custom') && is_array($value) === true) {
-                if ($this->isNestedArray($value) !== true) {
-                    $value = implode(",", $value);
-                }
+            if ($key !== 'client' && $key != 'custom' && is_array($value) && $this->isNestedArray($value) !== true) {
+                $value = implode(",", $value);
             }
         }
 

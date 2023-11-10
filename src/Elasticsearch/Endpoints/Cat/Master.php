@@ -20,9 +20,7 @@ class Master extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cat/master";
-
-        return $uri;
+        return "/_cat/master";
     }
 
     /**

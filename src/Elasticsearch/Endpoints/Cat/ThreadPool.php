@@ -20,9 +20,7 @@ class ThreadPool extends AbstractEndpoint
      */
     protected function getURI()
     {
-        $uri = "/_cat/thread_pool";
-
-        return $uri;
+        return "/_cat/thread_pool";
     }
 
     /**
