@@ -136,7 +136,7 @@ class Connection implements ConnectionInterface
      * @param \Elasticsearch\Transport $transport
      * @return mixed
      */
-    public function performRequest($method, $uri, $params = null, $body = null, $options = [], Transport $transport)
+    public function performRequest($method, $uri, Transport $transport, $params = null, $body = null, $options = [])
     {
         if (isset($body)) {
             $body = $this->serializer->serialize($body);
