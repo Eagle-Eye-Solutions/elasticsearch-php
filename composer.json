@@ -1,7 +1,11 @@
 {
-  "name": "elasticsearch/elasticsearch",
+  "name": "eagle-eye-solutions/elasticsearch",
   "description": "PHP Client for Elasticsearch",
-  "keywords": ["search","client", "elasticsearch"],
+  "keywords": [
+    "search",
+    "client",
+    "elasticsearch"
+  ],
   "type": "library",
   "license": "Apache-2.0",
   "authors": [
@@ -10,9 +14,9 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.4",
     "psr/log": "~1.0",
-    "guzzlehttp/ringphp" : "~1.0"
+    "guzzlehttp/ringphp": "~1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.7",
@@ -20,11 +24,15 @@
     "symfony/yaml": "2.4.3 as 2.4.2",
     "twig/twig": "1.*",
     "cpliakas/git-wrapper": "~1.0",
-    "sami/sami": "~3.2"
+    "sami/sami": "~3.2",
+    "rector/rector": "^0.18.6"
   },
   "suggest": {
     "ext-curl": "*",
     "monolog/monolog": "Allows for client-level logging and tracing"
+  },
+  "replace": {
+    "elasticsearch/elasticsearch": "self.version"
   },
   "autoload": {
     "psr-4": {
@@ -33,7 +41,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Elasticsearch\\Tests\\":      "tests/Elasticsearch/Tests/"
+      "Elasticsearch\\Tests\\": "tests/Elasticsearch/Tests/"
     }
   },
   "repositories": [
