@@ -62,6 +62,8 @@ class Client
     /** @var  callback */
     protected $endpoints;
 
+    protected TasksNamespace $tasks;
+
     /**
      * Client constructor
      *

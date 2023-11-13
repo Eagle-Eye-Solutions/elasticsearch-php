@@ -295,7 +295,7 @@ class Connection implements ConnectionInterface
     private function getURI($uri, $params)
     {
         if (isset($params) === true && !empty($params)) {
-            array_walk($params, function (&$value, &$key) {
+            array_walk($params, function (&$value, $key) {
                 if ($value === true) {
                     $value = 'true';
                 } else if ($value === false) {
@@ -555,7 +555,7 @@ class Connection implements ConnectionInterface
     private function process4xxError($request, $response, $ignore)
     {
         $statusCode = $response['status'];
-        $responseBody = $response['body'];
+        $responseBody = $response['body'] ?? '';
 
         /** @var \Exception $exception */
         $exception = $this->tryDeserialize400Error($response);
@@ -678,6 +678,6 @@ class Connection implements ConnectionInterface
         }
 
         // <2.0 "i just blew up" nonstructured exception
-        return new $errorClass($error, $response['status']);
+        return new $errorClass($error ?? '', $response['status']);
     }
 }
