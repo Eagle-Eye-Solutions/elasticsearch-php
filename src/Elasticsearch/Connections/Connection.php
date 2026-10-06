@@ -136,7 +136,7 @@ class Connection implements ConnectionInterface
      * @param \Elasticsearch\Transport $transport
      * @return mixed
      */
-    public function performRequest($method, $uri, $params = null, $body = null, $options = [], Transport $transport = null)
+    public function performRequest($method, $uri, $params = null, $body = null, $options = [], ?Transport $transport = null)
     {
         if (isset($body) === true) {
             $body = $this->serializer->serialize($body);
@@ -175,7 +175,7 @@ class Connection implements ConnectionInterface
 
     private function wrapHandler(callable $handler, LoggerInterface $logger, LoggerInterface $tracer)
     {
-        return function (array $request, Connection $connection, Transport $transport = null, $options) use ($handler, $logger, $tracer) {
+        return function (array $request, Connection $connection, ?Transport $transport = null, $options) use ($handler, $logger, $tracer) {
 
             $this->lastRequest = [];
             $this->lastRequest['request'] = $request;
