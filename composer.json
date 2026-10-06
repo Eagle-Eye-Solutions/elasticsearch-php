@@ -51,29 +51,23 @@
     }
   ],
   "config": {
-    "policy": {
-      "advisories": {
-        "ignore": {
-          "phpunit/phpunit": {
-            "constraint": "~4.7",
-            "reason": "Dev only. The test suite still targets PHPUnit 4",
-            "on-audit": false
-          },
-          "symfony/process": {
-            "constraint": "~2.1",
-            "reason": "Dev only. Required by sami for docs generation",
-            "on-audit": false
-          },
-          "symfony/yaml": {
-            "constraint": "2.4.3",
-            "reason": "Dev only. Used by the REST spec runner in util/",
-            "on-audit": false
-          },
-          "twig/twig": {
-            "constraint": "1.*",
-            "reason": "Dev only. Used by sami for docs generation",
-            "on-audit": false
-          }
+    "audit": {
+      "ignore": {
+        "phpunit/phpunit": {
+          "apply": "block",
+          "reason": "Dev only. The test suite still targets PHPUnit 4"
+        },
+        "symfony/process": {
+          "apply": "block",
+          "reason": "Dev only. Required by sami for docs generation"
+        },
+        "symfony/yaml": {
+          "apply": "block",
+          "reason": "Dev only. Used by the REST spec runner in util/"
+        },
+        "twig/twig": {
+          "apply": "block",
+          "reason": "Dev only. Used by sami for docs generation"
         }
       }
     }
