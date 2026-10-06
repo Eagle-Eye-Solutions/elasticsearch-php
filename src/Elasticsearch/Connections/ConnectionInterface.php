@@ -74,5 +74,12 @@ interface ConnectionInterface
      * @param \Elasticsearch\Transport $transport
      * @return mixed
      */
-    public function performRequest($method, $uri, $params = null, $body = null, $options = [], ?Transport $transport = null);
+    public function performRequest(
+        $method,
+        $uri,
+        $params = null,
+        $body = null,
+        $options = [],
+        ?Transport $transport = null
+    );
 }
