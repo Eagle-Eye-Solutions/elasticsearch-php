@@ -112,7 +112,7 @@ class Transport
                 // Note, this could be a 4xx or 5xx error
             },
             //onFailure
-            function (\Exception $response) {
+            function (\Throwable $response) {
                 // Ignore 400 level errors, as that means the server responded just fine
                 $code = $response->getCode();
                 if (!(isset($code) && $code >=400 && $code < 500)) {
