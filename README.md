@@ -1,6 +1,12 @@
 elasticsearch-php
 =================
 
+About this fork
+---------------
+
+This is an Eagle Eye fork of elasticsearch-php, maintained to keep the 2.x branch in use. It has been updated to be
+compatible with PHP 8.5, and requires PHP 8.2.13 or newer.
+
 [![Build Status](https://img.shields.io/travis/elastic/elasticsearch-php.svg?style=flat-square)](https://travis-ci.org/elastic/elasticsearch-php)
 
 
