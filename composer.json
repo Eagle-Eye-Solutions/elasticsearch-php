@@ -14,7 +14,7 @@
     }
   ],
   "require": {
-    "php": "^8.2.13",
+    "php": ">=8.2",
     "psr/log": "~1.0 || ^2.0 || ^3.0",
     "ezimuel/ringphp": "^1.4.1",
     "react/promise": "^3.2"
